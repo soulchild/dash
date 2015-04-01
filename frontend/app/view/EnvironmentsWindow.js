@@ -16,8 +16,10 @@
 Ext.define("Dash.view.EnvironmentsWindow", {
     extend: 'Ext.window.Window',
     alias: 'widget.environmentswindow',
-    requires: ['Ext.form.Panel'],
-
+    requires: [
+        'Ext.form.Panel', 
+        'Dash.view.EnvironmentsToolbar'
+    ],
     id: 'EnvironmentsWindow',
     title: 'Environments',
     width: 800,
@@ -33,7 +35,15 @@ Ext.define("Dash.view.EnvironmentsWindow", {
                 {
                     xtype: 'environmentgrid'
                 }
-            ]
-        }
+            ],
+            bbar: [{
+                xtype: 'button',
+                id: 'CreateEnvironmentsWindow',
+                text: 'Neues Environment erstellen',
+                handler: function(button, event) {
+                    button.fireEvent('createEnvironmentsWindow', this);
+                }
+            }]
+        },
     ]
 });

@@ -59,6 +59,7 @@ Ext.application({
         'EnvironmentsWindow',
         'LockExtensionWindow',
         'EnvironmentGrid',
+        'CreateEnvironmentWindow',
         'CommentWindow',
         'Viewport'
     ],

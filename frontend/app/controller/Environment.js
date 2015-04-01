@@ -34,7 +34,22 @@ Ext.define('Dash.controller.Environment', {
                 hideEnvironmentsWindow: this.onHideEnvironmentsWindow
             }
         });
+        this.control({
+            '#CreateEnvironmentsWindow': {
+                createEnvironmentsWindow: this.onCreateEnvironmentsWindow
+            }
+        });
+        this.control({
+            '#CreateEnvironment': {
+                createEnvironmentsWindow: this.onCreateEnvironmentsWindow
+            }
+        });
         this.callParent(arguments);
+    },
+
+    onCreateEnvironmentsWindow: function() {
+        this.onHideEnvironmentsWindow();
+        window = Ext.create('Dash.view.CreateEnvironmentWindow').show();
     },
     onShowEnvironmentsWindow: function() {
         this.getEnvironmentsStore().reload();
