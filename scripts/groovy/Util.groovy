@@ -46,6 +46,28 @@ class Util {
         return bundle
     }
 
+    static boolean startPipelineBuild(pbi, pname, bnum, branch, rev, src_dir, repolink, propertyFileDir, script_dir, out) {
+        def cmd = "bash ${script_dir}/repo/start_pipeline_build.sh ${pbi} ${pname} ${bnum} ${branch} ${rev} ${src_dir} ${repolink}"
+        exec(cmd, out)
+
+        if (propertyFileDir != '') {
+          writePropertiesFile(propertyFileDir, pbi, pname, bnum, branch, rev, src_dir, repolink)
+        }
+    }
+
+    static boolean writePropertiesFile(directory, pbi, pname, bnum, branch, rev, src_dir, repolink) {
+        new File("${directory}/${pbi}.properties").withWriter { out ->
+          out.println """PBI=${pbi}
+PNAME=${pname}
+BNUM=${bnum}
+BRANCH=${branch}
+REV=${rev}
+VERSION=${bnum}+git${rev}
+REPOLINK=${repolink}
+"""
+        }
+    }
+
     static String createBuildResultData(build, out) {
         def jobName = build.project.name
         def jobUrl = build.getUrl()
@@ -62,7 +84,7 @@ class Util {
     }
 
     static boolean writeBuildResults(bundle, stage, builds, workspace, out) {
-    def success = true
+        def success = true
         for ( build in builds ) {
             def dataString = createBuildResultData(build, out)
             // write test results to metadata
