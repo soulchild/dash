@@ -260,6 +260,10 @@ Dash.config = {
         dateformat: 'Y-m-d H:i:s'
     },
 
+    environmentTemplate: {
+        endpoint: '/environmenttemplate'
+    },
+
     build: {
         triggerRestartUrl: '/jenkins/job/Deployment/buildWithParameters?token=Aezei3oph9xu',
         triggerStopUrlPathSuffix: 'stop'

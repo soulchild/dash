@@ -44,6 +44,7 @@ Ext.application({
         'JobStatus',
         'StageStatus',
         'Environment',
+        'EnvironmentTemplate',
         'LockDuration'
     ],
 
@@ -73,6 +74,7 @@ Ext.application({
         'JobStatus',
         'StageStatus',
         'Environments',
+        'EnvironmentTemplates',
         'LockDurations'
     ],
 

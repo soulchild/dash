@@ -35,15 +35,28 @@ Ext.define("Dash.view.EnvironmentsWindow", {
                 {
                     xtype: 'environmentgrid'
                 }
-            ],
-            bbar: [{
-                xtype: 'button',
-                id: 'CreateEnvironmentsWindow',
-                text: 'Neues Environment erstellen',
-                handler: function(button, event) {
-                    button.fireEvent('createEnvironmentsWindow', this);
-                }
-            }]
+            ]
         },
+    ],
+    dockedItems: [
+        {
+            xtype: 'toolbar',
+            flex: 1,
+            dock: 'bottom',
+            ui: 'footer',
+            layout: {
+                type: 'hbox'
+            },
+            items: [
+                {
+                    xtype: 'button',
+                    id: 'CreateEnvironmentsWindow',
+                    text: 'Neues Environment erstellen',
+                    handler: function(button, event) {
+                        button.fireEvent('createEnvironmentsWindow', this);
+                    }
+                },
+            ]
+        }
     ]
 });

@@ -36,21 +36,17 @@ Ext.define("Dash.view.CreateEnvironmentWindow", {
                     id: 'EnvironmentCombo',
                     name: 'environment',
                     fieldLabel: 'Vorlage',
-                    store: 'Environments',
+                    store: 'EnvironmentTemplates',
                     queryMode: 'local',
-                    displayField: 'label',
-                    valueField: 'id',
+                    displayField: 'name',
+                    valueField: 'name',
                     border: false,
                     forceSelection: true,
                     allowBlank: false,
                     validator: function(value) {
-                        var record = this.getStore().findRecord('label', value);
-                        var overwriteField = this.findParentByType('form').getForm().findField('overwrite');
-                        return (!record || !record.get('locked') || overwriteField.getValue());
+                        var record = this.getStore().findRecord('name', value);
+                        return !!record;
                     },
-                    listConfig: {
-                        id: 'EnvList'
-                    }
                 },
             ],
             bbar: ['->', {
@@ -65,6 +61,7 @@ Ext.define("Dash.view.CreateEnvironmentWindow", {
                 id: 'CreateEnvironment',
                 text: 'Erstellen',
                 handler: function(button, event) {
+                    var form = button.findParentByType('form');
                     if (form.isValid()) {
                         button.fireEvent('createEnvironment', window.bundle, form.getValues());
                     }

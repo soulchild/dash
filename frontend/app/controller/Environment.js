@@ -16,11 +16,15 @@
 Ext.define('Dash.controller.Environment', {
     extend: 'Dash.controller.Base',
     requires: [],
-    stores: ['Environments'],
+    stores: ['Environments', 'EnvironmentTemplates'],
     refs: [
         {
             selector: 'environmentswindow',
             ref: 'environmentsWindow'
+        },
+        {
+            selector: 'createenvironmentswindow',
+            ref: 'createEnvironmentWindow'
         }
     ],
     init: function() {
@@ -39,16 +43,17 @@ Ext.define('Dash.controller.Environment', {
                 createEnvironmentsWindow: this.onCreateEnvironmentsWindow
             }
         });
-        this.control({
-            '#CreateEnvironment': {
-                createEnvironmentsWindow: this.onCreateEnvironmentsWindow
-            }
-        });
+        // this.control({
+        //     '#CreateEnvironment': {
+        //         createEnvironmentsWindow: this.onCreateEnvironmentsWindow
+        //     }
+        // });
         this.callParent(arguments);
     },
 
     onCreateEnvironmentsWindow: function() {
         this.onHideEnvironmentsWindow();
+        this.getEnvironmentTemplatesStore().reload();
         window = Ext.create('Dash.view.CreateEnvironmentWindow').show();
     },
     onShowEnvironmentsWindow: function() {
