@@ -68,7 +68,7 @@ class EnvironmentController extends Zend_Rest_Controller
             );
         } catch (Exception $e) {
             $status = $e instanceof InvalidArgumentException ? 409 : 422;
-            $data = array('error', $e->getMessage());
+            $data = array('error' => $e->getMessage());
             $this->getResponse()->setHttpResponseCode($status);
             $this->getResponse()->setBody(json_encode($data));
             return;
