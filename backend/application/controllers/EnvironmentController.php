@@ -74,7 +74,7 @@ class EnvironmentController extends Zend_Rest_Controller
             return;
         }
 
-        $this->getResponse()->setHttpResponseCode(201);
+        # Return newly created entity by forwarding to GET method
         $this->_forward('get', null, null, array('id', $this->_getParam('id')));
     }
 
