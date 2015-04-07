@@ -28,6 +28,11 @@ class Application_Model_Environment
     public $urls;
     public $content;
 
+    private function getDirectory()
+    {
+        return Application_Model_EnvironmentPeer::directoryForEnvironments();
+    }
+
     public function getFilename()
     {
         if (!$this->id)
@@ -74,13 +79,30 @@ class Application_Model_Environment
             $this->content = $clone->content;
     }
 
-    public function save()
+    public function create()
     {
-        $this->restoreImmutableProperties();
-        $jsonString = json_encode($this);
+        $this->save(true);
+    }
+
+    public function update()
+    {
+        $this->save(false);
+    }
+
+    private function save($create = false)
+    {
+        if (! $create) {
+            $this->restoreImmutableProperties();
+        }
+
         $filename = $this->getFilename();
-        if (!is_writable($filename))
-            throw new Exception('File is not writeable: ' . $filename);
+        if (! is_writable($create ? $this->getDirectory() : $filename)) {
+            # Work around php's silly is_writable() implementation which can only check 
+            # whether a directory is writable or a file ALREADY EXISTS and is writable.
+            throw new Exception('File/Directory is not writeable.');
+        }
+
+        $jsonString = json_encode($this);
         file_put_contents($filename, $jsonString);
     }
 

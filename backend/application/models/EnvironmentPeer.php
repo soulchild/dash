@@ -17,9 +17,14 @@
 
 class Application_Model_EnvironmentPeer
 {
+    public static function directoryForEnvironments()
+    {
+        return Zend_Registry::get("datadir") . '/';
+    }
+
     public static function generateFilenameForEnvId($string)
     {
-        return Zend_Registry::get("datadir") . '/' . $string . '.json';
+        return self::directoryForEnvironments() . $string . '.json';
     }
 
     public static function getAllEnvironments()
