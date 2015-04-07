@@ -260,9 +260,29 @@ Dash.config = {
         dateformat: 'Y-m-d H:i:s'
     },
 
-    environmentTemplate: {
-        endpoint: '/environmenttemplate'
-    },
+    environmentTemplates: [
+        {
+            "name": "Development Environment",
+            "params": {
+                "env" : "development",
+                "foo" : "bar"
+            }
+        },
+        {
+            "name": "Staging Environment",
+            "params": {
+                "env" : "staging",
+                "foo" : "bar"
+            }
+        },
+        {
+            "name": "Production Environment",
+            "params": {
+                "env" : "production",
+                "foo" : "bar"
+            }
+        }
+    ],
 
     build: {
         triggerRestartUrl: '/jenkins/job/Deployment/buildWithParameters?token=Aezei3oph9xu',

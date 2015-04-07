@@ -16,5 +16,6 @@
 Ext.define('Dash.store.EnvironmentTemplates', {
     extend: 'Ext.data.Store',
     requires: 'Dash.model.EnvironmentTemplate',
-    model: 'Dash.model.EnvironmentTemplate'
+    model: 'Dash.model.EnvironmentTemplate',
+    data: Dash.config.environmentTemplates
 });

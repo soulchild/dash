@@ -27,7 +27,7 @@ Ext.define('Dash.controller.Environment', {
             ref: 'createEnvironmentWindow'
         }
     ],
-    init: function() {
+    init: function() { 
         this.control({
             'toptoolbar': {
                 showEnvironmentsWindow: this.onShowEnvironmentsWindow
@@ -52,8 +52,7 @@ Ext.define('Dash.controller.Environment', {
     },
 
     onCreateEnvironmentsWindow: function() {
-        this.onHideEnvironmentsWindow();
-        this.getEnvironmentTemplatesStore().reload();
+        //this.onHideEnvironmentsWindow();
         window = Ext.create('Dash.view.CreateEnvironmentWindow').show();
     },
     onShowEnvironmentsWindow: function() {

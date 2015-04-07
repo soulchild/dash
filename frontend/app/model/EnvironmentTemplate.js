@@ -19,17 +19,5 @@ Ext.define('Dash.model.EnvironmentTemplate', {
     fields: [
         { name: 'name', type: 'string' },
         { name: 'params', type: 'array' },
-    ],
-
-    proxy: {
-        type: 'rest',
-        url: Dash.config.environmentTemplate.endpoint,
-        reader: {
-            type: 'json',
-            root: 'results'
-        },
-        writer: {
-            type: 'json',
-        }
-    }
+    ]
 });
